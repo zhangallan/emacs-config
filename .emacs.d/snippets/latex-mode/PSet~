@@ -1,0 +1,43 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: PSet
+# key: PSet
+# binding: direct-keybinding
+# --
+
+\RequirePackage[l2tabu, orthodox]{nag} % Nagging for obsolete commands and stuff
+
+\documentclass{article}
+
+\usepackage[cm]{fullpage} % Makes margins smaller
+\usepackage{amsmath} % Standard math package
+\usepackage{amssymb} % Standard math symbol package
+\usepackage{titling} % Makes titles look nice
+\usepackage{graphicx} % Allows importation of image files into document
+\usepackage{hyperref} % Allows direct linking
+\usepackage{booktabs} % Useful for the Excel to Latex package when constructing tables. Lets you have tables w/o vertical separators
+\usepackage{lmodern} % Makes Latex less picky about font sizes
+
+\usepackage{microtype} % Makes spacing better
+
+%%%%%%%%%%%%%%%% Creating new commands to make things easy on myself
+
+\newcommand{\e}{\epsilon}
+
+
+%%%%%%%%%%%%%%% 
+
+\begin{document}
+
+%%%%%%%%%%%%%%% Title stuff
+
+\setlength{\droptitle}{-1in}
+
+\title{${1:CLASS NUMBER AND TITLE Problem Set #}}
+\author{Allan Zhang (CNet ID: zhangallan)}
+\maketitle
+
+%%%%%%%%%%%%%%% Real document begins here
+
+\section{${2:Problem 1}}
+
+\end{document}
