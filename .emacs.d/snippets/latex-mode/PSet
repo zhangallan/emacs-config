@@ -7,23 +7,39 @@
 
 \documentclass{article}
 
-\usepackage[cm]{fullpage} % Makes margins smaller
-\usepackage{amsmath} % Standard math package
-\usepackage{amssymb} % Standard math symbol package
-\usepackage{titling} % Makes titles look nice
-\usepackage{graphicx} % Allows importation of image files into document
-\usepackage{hyperref} % Allows direct linking
-\usepackage{booktabs} % Useful for the Excel to Latex package when constructing tables. Lets you have tables w/o vertical separators
-\usepackage{lmodern} % Makes Latex less picky about font sizes
+%%%%%%%%%%%%%% Standard Packages %%%%%%%%%%%%%%%%%
 
-\usepackage{microtype} % Makes spacing better
+%%% Formatting
+\usepackage{setspace} % For changing spacing
+\usepackage[cm]{fullpage} % Makes margins smaller
+\usepackage{titling} % Makes titles look nice
+\usepackage{microtype} % Makes spacing better.
+
+%%% Math
+\usepackage{amsmath} % Standard math package
+\usepackage{amsthm} % For theorems
+\usepackage{amssymb} % Standard math symbol package
+
+%%% Additional Features
+\usepackage{graphicx} % Allows importation of image files into document
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=Green,citecolor=RedViolet]{hyperref} % Allows direct linking. Links are also colored
+\usepackage{booktabs} % Useful for the Excel to Latex package when constructing tables. Lets you have tables w/o vertical separators
+\usepackage{enumitem} % Lets you customize labels on lists better
+
+%%% Quality of life
+\usepackage{lmodern} % Makes Latex less picky about font sizes
 
 %%%%%%%%%%%%%%%% Creating new commands to make things easy on myself
 
-\newcommand{\e}{\epsilon}
+\newcommand{\e}{\epsilon} % Only done because epsilon is annoying to type
 
+%%%%%%%%%%%%%%%% Theorem environments
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{cor}{Corollary}
 
-%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%
 
 \begin{document}
 

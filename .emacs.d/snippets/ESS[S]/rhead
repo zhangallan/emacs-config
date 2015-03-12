@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: rhead
+# key: rhead
+# binding: direct-keybinding
+# --
+
+# name: Allan Zhang
+# description: $1
+$0
