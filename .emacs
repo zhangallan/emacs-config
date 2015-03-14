@@ -15,14 +15,21 @@
 
                                         ; Line numbers
 (global-linum-mode 1)
+                                        ; Offset the number by two spaces to work around some weird fringe glitch. See: http://stackoverflow.com/questions/4920210/what-causes-this-graphical-error-in-emacs-with-linum-mode-on-os-x
+(setq linum-format "  %d ")
 
 					; Workgroups for saving window configurations.
 					; Note that is also a (workgroups-mode 1) at the bottom too
 
 					; Undo Tree
 (global-undo-tree-mode)
+                                        ; Expand region
+(global-set-key (kbd "C-=") 'er/expand-region)
+                                        ; Expand Delete Mode
+(delete-selection-mode 1)
 
 					; IDO mode for better filename completion
+
 (ido-mode 1)
 (ido-vertical-mode 1)
 (setq ido-enable-flex-matching t)
@@ -168,6 +175,9 @@
      ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
      ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
  '(TeX-source-correlate-mode t)
+ '(aggressive-indent-excluded-modes
+   (quote
+    (bibtex-mode coffee-mode conf-mode Custom-mode diff-mode dos-mode erc-mode jabber-chat-mode haml-mode haskell-mode makefile-mode makefile-gmake-mode minibuffer-inactive-mode netcmd-mode python-mode sass-mode slim-mode special-mode shell-mode snippet-mode eshell-mode tabulated-list-mode term-mode TeX-output-mode text-mode yaml-mode ein:ml)))
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(auto-image-file-mode t)
@@ -187,7 +197,7 @@
  '(flycheck-checkers
    (quote
     (ada-gnat asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint d-dmd elixir emacs-lisp emacs-lisp-checkdoc erlang eruby-erubis fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck haml handlebars haskell-ghc haskell-hlint html-tidy javascript-jshint javascript-eslint javascript-gjslint json-jsonlint less lua perl perl-perlcritic php php-phpmd php-phpcs puppet-parser puppet-lint python-flake8 python-pylint python-pycompile r-lintr racket rpm-rpmlint rst rst-sphinx ruby-rubocop ruby-rubylint ruby ruby-jruby rust sass scala scala-scalastyle scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim tex-chktex tex-lacheck texinfo verilog-verilator xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby)))
- '(flycheck-disabled-checkers (quote (python-flake8)))
+ '(flycheck-disabled-checkers (quote (python-pylint python-flake8)))
  '(flycheck-display-errors-delay 0.5)
  '(flycheck-flake8-maximum-line-length 2000)
  '(flycheck-flake8rc "C:\\HOME\\.config\\flake8")
@@ -197,6 +207,7 @@
  '(flycheck-python-pylint-executable "c:\\Python27\\Scripts\\pylint.exe")
  '(flycheck-tex-chktex-executable
    "\"C:\\Program Files (x86)\\MiKTeX 2.9\\miktex\\bin\\chktex.exe\"")
+ '(global-aggressive-indent-mode nil)
  '(global-visual-line-mode t)
  '(global-whitespace-mode nil)
  '(highlight-changes-colors ("#FD5FF0" "#AE81FF"))
@@ -209,7 +220,7 @@
     ("#A45E0A" . 70)
     ("#A41F99" . 85)
     ("#49483E" . 100)))
- '(indent-tabs-mode t)
+ '(indent-tabs-mode nil)
  '(magit-diff-use-overlays nil)
  '(monokai-high-contrast-mode-line t)
  '(org-log-done (quote time))
@@ -235,14 +246,14 @@
  '(whitespace-display-mappings
    (quote
     ((space-mark 32
-		 [183]
-		 [46])
+                 [183]
+                 [46])
      (space-mark 160
-		 [164]
-		 [95])
+                 [164]
+                 [95])
      (tab-mark 9
-	       [187 9]
-	       [92 9])))))
+               [187 9]
+               [92 9])))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
