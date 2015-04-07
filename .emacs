@@ -46,6 +46,7 @@
 
 					; Smartparens
 (smartparens-global-mode t)
+(require 'smartparens-config)
 
 					; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -71,9 +72,18 @@
        (progn
 					;enable auto-revert-mode to update reftex when bibtex file changes on disk
 	 (global-auto-revert-mode t)
-	 (reftex-parse-all))))
+	 (reftex-parse-all)
+
+                                        ; Add a custom reftex cite format to insert links
+         (reftex-set-cite-format "** [[papers:%l][%2a %y]]: %t \n")
+         )
+       )
+    (define-key org-mode-map (kbd "C-c )") 'reftex-citation)
+  )
 
 (add-hook 'org-mode-hook 'org-mode-reftex-setup)
+
+(setq org-link-abbrev-alist '(("papers" . "C:\\Users\\Allan Zhang\\Dropbox\\School Work\\Economic Papers\\%s.pdf")))
 
 					; Suggested hotkeys. See documentation
 (global-set-key "\C-cl" 'org-store-link)
@@ -107,6 +117,16 @@
 
 					; Elpy for Python
 (elpy-enable)
+
+;; Changes default C-c C-c behavior so it sends the current line if nothing is selected instead of the entire buffer
+(defun landis/send-line-or-region ()
+  (interactive)
+  (if (region-active-p)
+      (call-interactively 'elpy-shell-send-region-or-buffer)
+    (python-shell-send-string (elpy--region-without-indentation
+                               (line-beginning-position)
+                               (line-end-position)))))
+(define-key elpy-mode-map (kbd "C-c C-c") 'landis/send-line-or-region)
 
 					; Company Mode Configs
 (require 'company-auctex)
@@ -192,7 +212,10 @@
  '(elpy-modules
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-yasnippet elpy-module-sane-defaults)))
+ '(ess-eval-visibly (quote nowait))
  '(ess-smart-S-assign-key "<")
+ '(ess-swv-pdflatex-commands (quote ("pdflatex")))
+ '(ess-swv-processor (quote knitr))
  '(flycheck-check-syntax-automatically (quote (save mode-enabled)))
  '(flycheck-checkers
    (quote
@@ -207,6 +230,7 @@
  '(flycheck-python-pylint-executable "c:\\Python27\\Scripts\\pylint.exe")
  '(flycheck-tex-chktex-executable
    "\"C:\\Program Files (x86)\\MiKTeX 2.9\\miktex\\bin\\chktex.exe\"")
+ '(flyspell-default-dictionary "en_US")
  '(global-aggressive-indent-mode nil)
  '(global-visual-line-mode t)
  '(global-whitespace-mode nil)
@@ -221,8 +245,23 @@
     ("#A41F99" . 85)
     ("#49483E" . 100)))
  '(indent-tabs-mode nil)
+ '(inferior-julia-program-name "C:\\Julia-0.3.7\\bin\\julia-debug.exe")
+ '(ispell-dictionary "en_US")
+ '(ispell-extra-args nil)
+ '(ispell-highlight-face (quote flyspell-incorrect))
+ '(ispell-local-dictionary "en_US")
+ '(ispell-local-dictionary-alist
+   (quote
+    (("en_US" "\"[[:alpha:]]\"" "\"[^[:alpha:]]\"" "\"[']\"" t
+      ("-d en_US")
+      "~tex" iso-8859-1))))
+ '(ispell-program-name "c:\\Misc Programs\\hunspell\\bin\\hunspell.exe")
  '(magit-diff-use-overlays nil)
  '(monokai-high-contrast-mode-line t)
+ '(org-agenda-files
+   (quote
+    ("c:/Users/Allan Zhang/Dropbox/School Work/Economic Papers/EconomicPapers.org")))
+ '(org-directory "C:\\Users\\Allan Zhang\\Dropbox\\Emacs\\orgy")
  '(org-log-done (quote time))
  '(org-startup-indented t)
  '(preview-default-document-pt 12)
@@ -238,6 +277,8 @@
  '(recentf-auto-cleanup (quote mode))
  '(recentf-max-saved-items 400)
  '(recentf-mode t)
+ '(reftex-cite-punctuation (quote (", " " \\& " " et al.")))
+ '(show-smartparens-global-mode t)
  '(tab-always-indent t)
  '(tool-bar-mode nil)
  '(weechat-color-list
